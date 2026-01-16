@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Store, BarChart3, ShoppingCart, Users, CheckCircle2 } from "lucide-react";
+import { BarChart3, ShoppingCart, Users, CheckCircle2 } from "lucide-react";
 import { login } from "./actions/auth";
 import { ModeToggle } from "@/components/mode-toggle";
+import Image from "next/image";
 
 export default function LandingPage() {
   return (
@@ -13,9 +14,7 @@ export default function LandingPage() {
       <nav className="border-b bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
             <div className="flex items-center gap-2 font-bold text-slate-900 dark:text-white">
-                <div className="p-1 bg-emerald-600 rounded-md">
-                    <Store className="h-5 w-5 text-white" />
-                </div>
+                <Image src="/icon.png" alt="Kijiji POS" width={32} height={32} className="rounded-md" />
                 <span className="text-xl">Kijiji POS</span>
             </div>
             <div className="flex items-center gap-4">

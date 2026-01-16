@@ -45,6 +45,7 @@ export function DashboardNav() {
     <nav className="grid items-start gap-2">
       {items.map((item, index) => {
         const Icon = item.icon;
+        const isActive = pathname === item.href;
         return (
           <Link
             key={index}
@@ -52,8 +53,10 @@ export function DashboardNav() {
           >
             <span
               className={cn(
-                "group flex items-center rounded-md px-3 py-2.5 text-sm font-medium hover:bg-emerald-50 hover:text-emerald-600 transition-colors",
-                pathname === item.href ? "bg-emerald-50 text-emerald-600" : "text-slate-700 bg-transparent"
+                "group flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-all",
+                isActive 
+                  ? "bg-emerald-600 text-white dark:bg-emerald-600 dark:text-white shadow-sm" 
+                  : "text-slate-700 dark:text-slate-200 bg-transparent hover:bg-emerald-50 dark:hover:bg-slate-800 hover:text-emerald-600 dark:hover:text-emerald-400"
               )}
             >
               <Icon className="mr-2 h-4 w-4" />

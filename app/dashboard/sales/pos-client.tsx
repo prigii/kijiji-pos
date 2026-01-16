@@ -93,21 +93,21 @@ export default function POSClient() {
         {/* Filters */}
         <div className="flex items-center justify-between gap-4">
             <div className="relative flex-1 max-w-sm">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400 dark:text-slate-500" />
                 <Input 
                     placeholder="Search products (Press F1)..." 
-                    className="pl-9"
+                    className="pl-9 dark:bg-slate-800 dark:border-slate-700"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
             </div>
             <div className="flex items-center gap-2">
-                 <Badge variant="outline" className="px-3 py-1 bg-emerald-50 text-emerald-700 border-emerald-200">
+                 <Badge variant="outline" className="px-3 py-1 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800">
                     STATION 01
                  </Badge>
                  <div className="text-right">
-                    <p className="text-xs font-bold text-slate-800">Main Terminal</p>
-                    <p className="text-[10px] text-slate-500">May 24, 2024 • 14:52</p>
+                    <p className="text-xs font-bold text-slate-800 dark:text-slate-200">Main Terminal</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400">May 24, 2024 • 14:52</p>
                  </div>
             </div>
         </div>
@@ -119,7 +119,7 @@ export default function POSClient() {
                     <Button
                         key={cat}
                         variant={selectedCategory === cat ? "default" : "secondary"}
-                        className={`rounded-full ${selectedCategory === cat ? "bg-emerald-800 hover:bg-emerald-900" : "bg-white text-slate-600 hover:bg-slate-100"}`}
+                        className={`rounded-full ${selectedCategory === cat ? "bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-700" : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border dark:border-slate-700"}`}
                         onClick={() => setSelectedCategory(cat)}
                     >
                         {cat}
@@ -134,21 +134,21 @@ export default function POSClient() {
                 {filteredProducts.map((product) => (
                     <Card 
                         key={product.id} 
-                        className="cursor-pointer hover:shadow-lg transition-all border-slate-200 active:scale-95 group overflow-hidden"
+                        className="cursor-pointer hover:shadow-lg transition-all border-slate-200 dark:border-slate-700 dark:bg-slate-800 active:scale-95 group overflow-hidden"
                         onClick={() => addToCart(product)}
                     >
                         <CardContent className="p-4 flex flex-col items-center text-center space-y-3">
-                            <div className="h-24 w-24 bg-slate-100 rounded-lg flex items-center justify-center mb-2 group-hover:bg-emerald-50 transition-colors">
+                            <div className="h-24 w-24 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-2 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-950 transition-colors">
                                 {/* Placeholder Image */}
-                                <div className="text-2xl font-bold text-slate-300 group-hover:text-emerald-300">
+                                <div className="text-2xl font-bold text-slate-300 dark:text-slate-500 group-hover:text-emerald-300 dark:group-hover:text-emerald-400">
                                     {product.name.charAt(0)}
                                 </div>
                             </div>
                             <div className="space-y-1 w-full">
                                 <h3 className="font-semibold text-sm truncate w-full" title={product.name}>{product.name}</h3>
-                                <p className="text-emerald-700 font-bold">KES {product.price.toFixed(2)}</p>
+                                <p className="text-emerald-700 dark:text-emerald-400 font-bold">KES {product.price.toFixed(2)}</p>
                             </div>
-                            <div className="flex justify-between w-full text-[10px] text-slate-400">
+                            <div className="flex justify-between w-full text-[10px] text-slate-400 dark:text-slate-500">
                                 <span>Stock: {product.stock}</span>
                                 <span>{product.sku}</span>
                             </div>
@@ -160,10 +160,10 @@ export default function POSClient() {
       </div>
 
       {/* Right: Cart Sidebar */}
-      <div className="w-96 flex flex-col bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden h-full">
-         <div className="p-4 border-b flex items-center justify-between">
+      <div className="w-96 flex flex-col bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden h-full">
+         <div className="p-4 border-b dark:border-slate-700 flex items-center justify-between">
             <h3 className="font-bold text-lg">Current Order</h3>
-            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 text-xs h-auto py-1" onClick={() => setCart([])}>
+            <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 text-xs h-auto py-1" onClick={() => setCart([])}>
                 CLEAR ALL
             </Button>
          </div>
@@ -171,24 +171,24 @@ export default function POSClient() {
          <ScrollArea className="flex-1 p-4">
              <div className="space-y-4">
                 {cart.length === 0 && (
-                    <div className="flex flex-col items-center justify-center h-40 text-slate-400 space-y-2">
-                        <div className="h-12 w-12 rounded-full bg-slate-100 flex items-center justify-center">
+                    <div className="flex flex-col items-center justify-center h-40 text-slate-400 dark:text-slate-500 space-y-2">
+                        <div className="h-12 w-12 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
                             <ShoppingCartIcon className="h-6 w-6" />
                         </div>
                         <p className="text-sm">Cart is empty</p>
                     </div>
                 )}
                 {cart.map((item) => (
-                    <div key={item.product.id} className="flex items-center justify-between bg-slate-50/50 p-2 rounded-lg">
+                    <div key={item.product.id} className="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 p-2 rounded-lg">
                         <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold truncate">{item.product.name}</p>
-                            <p className="text-xs text-muted-foreground">KES {item.product.price} each</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">KES {item.product.price} each</p>
                         </div>
                         <div className="flex items-center gap-3 ml-2">
-                             <div className="flex items-center bg-white rounded-md border border-slate-200 shadow-sm">
-                                <button className="px-2 py-1 text-slate-600 hover:bg-slate-50" onClick={() => updateQuantity(item.product.id, -1)}><Minus className="h-3 w-3" /></button>
+                             <div className="flex items-center bg-white dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-600 shadow-sm">
+                                <button className="px-2 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700" onClick={() => updateQuantity(item.product.id, -1)}><Minus className="h-3 w-3" /></button>
                                 <span className="px-2 text-xs font-mono font-medium min-w-[1.5rem] text-center">{item.quantity}</span>
-                                <button className="px-2 py-1 text-slate-600 hover:bg-slate-50" onClick={() => updateQuantity(item.product.id, 1)}><Plus className="h-3 w-3" /></button>
+                                <button className="px-2 py-1 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700" onClick={() => updateQuantity(item.product.id, 1)}><Plus className="h-3 w-3" /></button>
                              </div>
                              <div className="font-bold text-sm min-w-[4rem] text-right">
                                 {Math.ceil(item.product.price * item.quantity).toLocaleString()}
@@ -200,40 +200,40 @@ export default function POSClient() {
          </ScrollArea>
 
          {/* Summary & Checkout */}
-         <div className="p-4 bg-slate-50 space-y-4 border-t">
+         <div className="p-4 bg-slate-50 dark:bg-slate-900/50 space-y-4 border-t dark:border-slate-700">
             <div className="space-y-2 text-sm">
-                <div className="flex justify-between text-slate-500">
+                <div className="flex justify-between text-slate-500 dark:text-slate-400">
                     <span>Subtotal</span>
                     <span>KES {subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
-                <div className="flex justify-between text-slate-500">
+                <div className="flex justify-between text-slate-500 dark:text-slate-400">
                     <span>VAT (16%)</span>
                     <span>KES {tax.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
-                <div className="flex justify-between text-lg font-bold text-emerald-900 pt-2 border-t border-slate-200">
+                <div className="flex justify-between text-lg font-bold text-emerald-900 dark:text-emerald-400 pt-2 border-t border-slate-200 dark:border-slate-700">
                     <span>Total</span>
                     <span>KES {total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2">
-                 <Button variant="outline" className="w-full bg-white">
+                 <Button variant="outline" className="w-full bg-white dark:bg-slate-800 dark:border-slate-600 dark:hover:bg-slate-700">
                     Hold Order
                  </Button>
-                 <Button variant="outline" className="w-full bg-white">
+                 <Button variant="outline" className="w-full bg-white dark:bg-slate-800 dark:border-slate-600 dark:hover:bg-slate-700">
                     Add Disc.
                  </Button>
             </div>
 
             <Button 
-                className="w-full bg-emerald-700 hover:bg-emerald-800 py-6 text-lg shadow-lg shadow-emerald-900/10" 
+                className="w-full bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 py-6 text-lg shadow-lg shadow-emerald-900/10" 
                 onClick={handleCheckout}
                 disabled={cart.length === 0}
             >
                 Checkout <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
             
-            <p className="text-[10px] text-center text-slate-400 uppercase tracking-widest">Quick Key: Space to Pay</p>
+            <p className="text-[10px] text-center text-slate-400 dark:text-slate-500 uppercase tracking-widest">Quick Key: Space to Pay</p>
          </div>
 
          {/* Checkout Modal */}

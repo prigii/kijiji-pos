@@ -13,49 +13,49 @@ export default function InventoryPage() {
     <div className="space-y-6">
        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
          <div>
-            <h2 className="text-3xl font-bold tracking-tight">Inventory</h2>
-            <p className="text-muted-foreground">Manage your products and stock levels.</p>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Inventory</h2>
+            <p className="text-slate-500 dark:text-slate-400">Manage your products and stock levels.</p>
          </div>
          <ProductForm />
       </div>
 
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card>
+        <Card className="dark:bg-slate-800 dark:border-slate-700">
             <CardContent className="p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <div className="p-3 bg-emerald-100 rounded-full">
-                        <Package className="h-6 w-6 text-emerald-600" />
+                    <div className="p-3 bg-emerald-100 dark:bg-emerald-950 rounded-full">
+                        <Package className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
-                        <p className="text-sm font-medium text-muted-foreground">Total Items</p>
+                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Total Items</p>
                         <h3 className="text-2xl font-bold">1,240</h3>
                     </div>
                 </div>
-                <div className="text-emerald-600 font-medium text-sm">+5% last month</div>
+                <div className="text-emerald-600 dark:text-emerald-400 font-medium text-sm">+5% last month</div>
             </CardContent>
         </Card>
-        <Card>
+        <Card className="dark:bg-slate-800 dark:border-slate-700">
             <CardContent className="p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                     <div className="p-3 bg-red-100 rounded-full">
-                        <AlertOctagon className="h-6 w-6 text-red-600" />
+                     <div className="p-3 bg-red-100 dark:bg-red-950 rounded-full">
+                        <AlertOctagon className="h-6 w-6 text-red-600 dark:text-red-400" />
                     </div>
                     <div>
-                        <p className="text-sm font-medium text-muted-foreground">Low Stock Alerts</p>
-                        <h3 className="text-2xl font-bold text-red-600">12</h3>
+                        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Low Stock Alerts</p>
+                        <h3 className="text-2xl font-bold text-red-600 dark:text-red-400">12</h3>
                     </div>
                 </div>
-                <div className="text-red-600 font-medium text-sm">Action Needed</div>
+                <div className="text-red-600 dark:text-red-400 font-medium text-sm">Action Needed</div>
             </CardContent>
         </Card>
       </div>
 
       <div className="flex items-center gap-2 max-w-sm">
-         <Input placeholder="Search by product name or SKU..." />
+         <Input placeholder="Search by product name or SKU..." className="dark:bg-slate-800 dark:border-slate-700" />
       </div>
 
-      <div className="rounded-md border bg-white">
+      <div className="rounded-md border bg-white dark:bg-slate-800 dark:border-slate-700">
           <Table>
             <TableHeader>
                 <TableRow>
@@ -72,28 +72,28 @@ export default function InventoryPage() {
                     <TableRow key={product.id}>
                         <TableCell>
                             <div className="flex items-center gap-3">
-                                <div className="h-10 w-10 rounded-md bg-slate-100 border border-slate-200" />
+                                <div className="h-10 w-10 rounded-md bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600" />
                                 <div className="font-medium">
                                     {product.name}
-                                    <span className="block text-xs text-muted-foreground">Premium Grade</span>
+                                    <span className="block text-xs text-slate-500 dark:text-slate-400">Premium Grade</span>
                                 </div>
                             </div>
                         </TableCell>
                         <TableCell className="font-mono text-xs">{product.sku}</TableCell>
                         <TableCell>
-                             <Badge variant="secondary" className="bg-slate-100 text-slate-700 hover:bg-slate-200">
+                             <Badge variant="secondary" className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600">
                                 {product.category}
                              </Badge>
                         </TableCell>
                         <TableCell>
                             <div className="flex items-center gap-2">
-                                <div className="h-2 w-24 bg-slate-100 rounded-full overflow-hidden">
+                                <div className="h-2 w-24 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                                     <div 
                                         className={`h-full rounded-full ${product.stock < 20 ? "bg-red-500" : "bg-emerald-500"}`} 
                                         style={{ width: `${Math.min(product.stock, 100)}%` }}
                                     />
                                 </div>
-                                <span className="text-xs text-muted-foreground">{product.stock} units</span>
+                                <span className="text-xs text-slate-500 dark:text-slate-400">{product.stock} units</span>
                             </div>
                         </TableCell>
                         <TableCell>KES {product.price.toLocaleString()}</TableCell>
